@@ -1,0 +1,22 @@
+input {
+  height: 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: 1px solid gray;
+}
+
+.error {
+  color: red;
+  display: block;
+  margin-top: 5px;
+}
+
+.input-field {
+  margin-bottom: 10px;
+}
+
+button {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}

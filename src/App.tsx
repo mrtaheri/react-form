@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Form from "./components/form";
+import Input from "./components/input";
+import Validator from "./utils/validator";
 
 function App() {
+  const [formErrors, setFormErrors] = React.useState<string[]>([]);
+  const [user, setUser] = React.useState<any>({});
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form onErrorSubmit={setFormErrors} onSubmitForm={setUser}>
+        <Input
+          validators={[
+            { check: Validator.required, message: "The field is required." },
+          ]}
+          defaultValue="boo"
+          placeholder="enter here"
+          name="email"
+        />
+        <Input
+          validators={[
+            { check: Validator.required, message: "The field is required." },
+          ]}
+          placeholder="enter here"
+          type="password"
+          name="password"
+        />
+        <button type="submit">Login</button>
+      </Form>
+      <div>
+        {formErrors?.length ? `error on ${formErrors.join(", ")}` : null}
+      </div>
+      <div>{user ? `form informatin is :${JSON.stringify(user)}` : null}</div>
     </div>
   );
 }
